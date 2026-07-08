@@ -1,0 +1,9 @@
+{
+  "project_name": "Beta",
+  "schedule_slippage_days": 3,
+  "budget_burn_percent": 8,
+  "milestone_completion_percent": 92,
+  "active_blockers_count": 0,
+  "stakeholder_sentiment_score": 4.2
+}
+

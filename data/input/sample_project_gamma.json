@@ -1,0 +1,9 @@
+{
+  "project_name": "Gamma",
+  "schedule_slippage_days": 28,
+  "budget_burn_percent": 18,
+  "milestone_completion_percent": 70,
+  "active_blockers_count": 4,
+  "stakeholder_sentiment_score": 2.0
+}
+

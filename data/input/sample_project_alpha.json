@@ -1,0 +1,9 @@
+{
+  "project_name": "Alpha",
+  "schedule_slippage_days": 12,
+  "budget_burn_percent": 25,
+  "milestone_completion_percent": 80,
+  "active_blockers_count": 2,
+  "stakeholder_sentiment_score": 3.5
+}
+

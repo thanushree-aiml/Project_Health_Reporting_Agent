@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-07-08T18:11:35.435153Z",
+  "projects": [
+    "Alpha",
+    "Beta",
+    "Gamma"
+  ],
+  "overall_counts": {
+    "red": 2,
+    "green": 1
+  },
+  "top_risks": {
+    "red_projects": [
+      "Alpha",
+      "Gamma"
+    ],
+    "amber_projects": []
+  }
+}

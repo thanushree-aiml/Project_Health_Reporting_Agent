@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-07-08T18:07:19.722612Z",
+  "input_path": "data/input/sample_project_beta.json",
+  "signals": {
+    "project_name": "Beta",
+    "schedule_slippage_days": 3.0,
+    "budget_burn_percent": 8.0,
+    "milestone_completion_percent": 92.0,
+    "active_blockers_count": 0,
+    "stakeholder_sentiment_score": 4.2,
+    "evidence": {
+      "schedule_slippage_days": "3",
+      "budget_burn_percent": "8",
+      "milestone_completion_percent": "92",
+      "active_blockers_count": "0",
+      "stakeholder_sentiment_score": "4.2"
+    },
+    "raw": {
+      "project_name": "Beta",
+      "schedule_slippage_days": 3,
+      "budget_burn_percent": 8,
+      "milestone_completion_percent": 92,
+      "active_blockers_count": 0,
+      "stakeholder_sentiment_score": 4.2
+    }
+  },
+  "rag": {
+    "per_category": {
+      "schedule": {
+        "rag": "green",
+        "score": 3.0,
+        "threshold_note": "Value 3.00 <= green threshold 5",
+        "confidence": "high",
+        "evidence": "3"
+      },
+      "budget": {
+        "rag": "green",
+        "score": 8.0,
+        "threshold_note": "Value 8.00 <= green threshold 10",
+        "confidence": "high",
+        "evidence": "8"
+      },
+      "milestones": {
+        "rag": "green",
+        "score": 92.0,
+        "threshold_note": "Completion 92.00% >= green 90%",
+        "confidence": "high",
+        "evidence": "92"
+      },
+      "blockers": {
+        "rag": "green",
+        "score": 0,
+        "threshold_note": "Value 0.00 <= green threshold 1",
+        "confidence": "high",
+        "evidence": "0"
+      },
+      "stakeholder_sentiment": {
+        "rag": "red",
+        "score": 4.2,
+        "threshold_note": "Value 4.20 > amber threshold 3",
+        "confidence": "high",
+        "evidence": "4.2"
+      }
+    },
+    "overall_rag": "green",
+    "data_sufficiency": "critical data available"
+  },
+  "narrative": {
+    "summary": "Overall status is Healthy: project indicators are within thresholds.",
+    "reasoning": [
+      "Schedule: Healthy (Value 3.00 <= green threshold 5). Evidence: 3.",
+      "Budget burn: Healthy (Value 8.00 <= green threshold 10). Evidence: 8.",
+      "Milestone health: Healthy (Completion 92.00% >= green 90%). Evidence: 92.",
+      "Blockers: Healthy (Value 0.00 <= green threshold 1). Evidence: 0.",
+      "Stakeholder sentiment: At risk (Value 4.20 > amber threshold 3). Evidence: 4.2."
+    ],
+    "overall_rag": "green",
+    "data_sufficiency": "critical data available"
+  }
+}
