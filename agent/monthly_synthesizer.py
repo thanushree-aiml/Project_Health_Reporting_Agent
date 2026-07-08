@@ -29,19 +29,33 @@ def run_monthly(inputs_pattern: str, output_name: str) -> None:
     total = len(items)
     overall_counts = Counter([it["rag"]["overall_rag"] for it in items])
 
-    # Simple trend extraction (MVP): list top red/amber projects.
+    # Trend extraction: list top red/amber projects + compute category trends.
     red_projects = [it["signals"]["project_name"] for it in items if it["rag"]["overall_rag"] == "red"]
     amber_projects = [it["signals"]["project_name"] for it in items if it["rag"]["overall_rag"] == "amber"]
+
+    def category_counts(cat: str) -> Dict[str, int]:
+        c = Counter([it["rag"]["per_category"][cat]["rag"] for it in items])
+        return dict(c)
+
+    category_trends = {
+        "schedule": category_counts("schedule"),
+        "budget": category_counts("budget"),
+        "milestones": category_counts("milestones"),
+        "blockers": category_counts("blockers"),
+        "stakeholder_sentiment": category_counts("stakeholder_sentiment"),
+    }
 
     summary = {
         "generated_at": datetime.utcnow().isoformat() + "Z",
         "projects": [it["signals"]["project_name"] for it in items],
         "overall_counts": dict(overall_counts),
+        "category_trends": category_trends,
         "top_risks": {
             "red_projects": red_projects,
             "amber_projects": amber_projects,
         },
     }
+
 
     # Generate PPTX if python-pptx is available
     try:
@@ -80,6 +94,20 @@ def run_monthly(inputs_pattern: str, output_name: str) -> None:
                 "Focus on Red projects first, then resolve Amber drivers.",
             ],
         )
+
+        # Category trends slide (more executive-friendly than only project lists)
+        cat = summary.get("category_trends", {})
+        add_bullets_slide(
+            "Category distribution (RAG)",
+            [
+                "Schedule: " + ", ".join([f"{k}={cat.get('schedule', {}).get(k, 0)}" for k in ("green", "amber", "red")]),
+                "Budget: " + ", ".join([f"{k}={cat.get('budget', {}).get(k, 0)}" for k in ("green", "amber", "red")]),
+                "Milestones: " + ", ".join([f"{k}={cat.get('milestones', {}).get(k, 0)}" for k in ("green", "amber", "red")]),
+                "Blockers: " + ", ".join([f"{k}={cat.get('blockers', {}).get(k, 0)}" for k in ("green", "amber", "red")]),
+                "Sentiment: " + ", ".join([f"{k}={cat.get('stakeholder_sentiment', {}).get(k, 0)}" for k in ("green", "amber", "red")]),
+            ],
+        )
+
 
         add_bullets_slide(
             "Emerging risks",

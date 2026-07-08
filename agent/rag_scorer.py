@@ -123,12 +123,44 @@ def score_rag(signals: Dict[str, Any]) -> Dict[str, Any]:
         evidence=evidence.get("active_blockers_count", ""),
     )
 
-    sentiment = _rag_from_threshold(
-        value=signals.get("stakeholder_sentiment_score"),
-        green_t=RAG_THRESHOLDS["stakeholder_sentiment"]["green"],
-        amber_t=RAG_THRESHOLDS["stakeholder_sentiment"]["amber"],
-        evidence=evidence.get("stakeholder_sentiment_score", ""),
-    )
+    # Stakeholder sentiment: higher is better (matches RAG_METHODLOGY.md)
+    sentiment_val = signals.get("stakeholder_sentiment_score")
+    if sentiment_val is None:
+        sentiment = CategoryResult(
+            rag="missing",
+            score=None,
+            threshold_note="Input missing/unavailable",
+            confidence="low",
+            evidence=evidence.get("stakeholder_sentiment_score", ""),
+        )
+    else:
+        green_t = RAG_THRESHOLDS["stakeholder_sentiment"]["green"]
+        amber_t = RAG_THRESHOLDS["stakeholder_sentiment"]["amber"]
+        if sentiment_val >= green_t:
+            sentiment = CategoryResult(
+                rag="green",
+                score=sentiment_val,
+                threshold_note=f"Sentiment {sentiment_val:.2f} >= green {green_t}",
+                confidence="high",
+                evidence=evidence.get("stakeholder_sentiment_score", ""),
+            )
+        elif sentiment_val >= amber_t:
+            sentiment = CategoryResult(
+                rag="amber",
+                score=sentiment_val,
+                threshold_note=f"Sentiment {sentiment_val:.2f} between amber {amber_t} and green {green_t}",
+                confidence="high",
+                evidence=evidence.get("stakeholder_sentiment_score", ""),
+            )
+        else:
+            sentiment = CategoryResult(
+                rag="red",
+                score=sentiment_val,
+                threshold_note=f"Sentiment {sentiment_val:.2f} < amber {amber_t}",
+                confidence="high",
+                evidence=evidence.get("stakeholder_sentiment_score", ""),
+            )
+
 
     categories = {
         "schedule": schedule,

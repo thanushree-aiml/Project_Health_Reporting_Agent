@@ -48,12 +48,38 @@ def _build_plain_english(signals: Dict[str, Any], scored: Dict[str, Any]) -> Dic
     else:
         summary = "Overall status is At risk: critical indicators breach thresholds and may impact delivery."
 
+    # Key drivers: which critical signal is worst (helps explain overall)
+    per_scored = scored["per_category"]
+
+    def worst_driver() -> str:
+        order = {"red": 3, "amber": 2, "green": 1, "missing": 0}
+        drivers = [
+            ("Schedule", per_scored["schedule"]["rag"]),
+            ("Budget burn", per_scored["budget"]["rag"]),
+            ("Milestone health", per_scored["milestones"]["rag"]),
+        ]
+        drivers.sort(key=lambda x: order.get(x[1], 0), reverse=True)
+        name, rag = drivers[0]
+        return f"Key driver: {name} is {rag.upper()}"
+
+    driver_line = worst_driver()
+
+    if overall == "green":
+        executive = "Overall indicates Healthy delivery posture based on critical drivers."
+    elif overall == "amber":
+        executive = "Overall indicates Watch status: at least one critical driver is deteriorating."
+    else:
+        executive = "Overall indicates At risk: one or more critical drivers breach thresholds."
+
     return {
         "summary": summary,
+        "executive": executive,
+        "driver": driver_line,
         "reasoning": reasoning,
         "overall_rag": overall,
         "data_sufficiency": scored.get("data_sufficiency"),
     }
+
 
 
 def run_weekly(input_path: str, project_name: Optional[str] = None) -> None:
