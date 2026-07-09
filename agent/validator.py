@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 import glob
 import json
 import os
@@ -39,6 +40,7 @@ def validate_weekly_outputs(input_paths: List[str], output_dir: str) -> List[str
 
 
 def validate_monthly_summary(weekly_pattern: str, monthly_summary_path: str) -> List[str]:
+
     issues: List[str] = []
 
     paths = sorted(glob.glob(weekly_pattern))

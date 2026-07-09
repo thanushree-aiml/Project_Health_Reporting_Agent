@@ -9,10 +9,11 @@ from typing import Any, Dict, Optional
 from rich.console import Console
 from tabulate import tabulate
 
-from config.settings import OUTPUT_FOLDER, REPORT_FOLDER
+from config.settings import OUTPUT_FOLDER
 
 from agent.rag_scorer import score_rag
 from agent.signal_extractor import extract_signals
+
 
 console = Console()
 

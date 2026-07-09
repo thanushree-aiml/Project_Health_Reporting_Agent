@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T18:11:35.191525Z",
+  "generated_at": "2026-07-09T16:35:32.700639Z",
   "input_path": "data/input/sample_project_alpha.json",
   "signals": {
     "project_name": "Alpha",
@@ -55,9 +55,9 @@
         "evidence": "2"
       },
       "stakeholder_sentiment": {
-        "rag": "green",
+        "rag": "amber",
         "score": 3.5,
-        "threshold_note": "Value 3.50 <= green threshold 4",
+        "threshold_note": "Sentiment 3.50 between amber 3 and green 4",
         "confidence": "high",
         "evidence": "3.5"
       }
@@ -67,12 +67,14 @@
   },
   "narrative": {
     "summary": "Overall status is At risk: critical indicators breach thresholds and may impact delivery.",
+    "executive": "Overall indicates At risk: one or more critical drivers breach thresholds.",
+    "driver": "Key driver: Budget burn is RED",
     "reasoning": [
       "Schedule: Watch (Value 12.00 between green 5 and amber 15). Evidence: 12.",
       "Budget burn: At risk (Value 25.00 > amber threshold 20). Evidence: 25.",
       "Milestone health: Watch (Completion 80.00% between amber 75% and green 90%). Evidence: 80.",
       "Blockers: Watch (Value 2.00 between green 1 and amber 3). Evidence: 2.",
-      "Stakeholder sentiment: Healthy (Value 3.50 <= green threshold 4). Evidence: 3.5."
+      "Stakeholder sentiment: Watch (Sentiment 3.50 between amber 3 and green 4). Evidence: 3.5."
     ],
     "overall_rag": "red",
     "data_sufficiency": "critical data available"

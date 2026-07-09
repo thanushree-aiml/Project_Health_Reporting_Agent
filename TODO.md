@@ -2,7 +2,8 @@
 
 ## Step 1: Dependencies
 - [x] Fix `requirements.txt` (was empty)
-- [ ] `pip install -r requirements.txt`
+- [x] Install dependencies via `pip install -r requirements.txt`
+
 - [x] Create initial agent modules + RAG methodology + README
 - [x] Implement weekly agent (signal extraction, scoring, plain-English + JSON/MD outputs)
 - [x] Implement monthly synthesis (trend + PPTX + JSON summary)

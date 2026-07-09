@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T18:07:19.974755Z",
+  "generated_at": "2026-07-09T16:35:39.330143Z",
   "input_path": "data/input/sample_project_gamma.json",
   "signals": {
     "project_name": "Gamma",
@@ -55,9 +55,9 @@
         "evidence": "4"
       },
       "stakeholder_sentiment": {
-        "rag": "green",
+        "rag": "red",
         "score": 2.0,
-        "threshold_note": "Value 2.00 <= green threshold 4",
+        "threshold_note": "Sentiment 2.00 < amber 3",
         "confidence": "high",
         "evidence": "2.0"
       }
@@ -67,12 +67,14 @@
   },
   "narrative": {
     "summary": "Overall status is At risk: critical indicators breach thresholds and may impact delivery.",
+    "executive": "Overall indicates At risk: one or more critical drivers breach thresholds.",
+    "driver": "Key driver: Schedule is RED",
     "reasoning": [
       "Schedule: At risk (Value 28.00 > amber threshold 15). Evidence: 28.",
       "Budget burn: Watch (Value 18.00 between green 10 and amber 20). Evidence: 18.",
       "Milestone health: At risk (Completion 70.00% < amber 75%). Evidence: 70.",
       "Blockers: At risk (Value 4.00 > amber threshold 3). Evidence: 4.",
-      "Stakeholder sentiment: Healthy (Value 2.00 <= green threshold 4). Evidence: 2.0."
+      "Stakeholder sentiment: At risk (Sentiment 2.00 < amber 3). Evidence: 2.0."
     ],
     "overall_rag": "red",
     "data_sufficiency": "critical data available"

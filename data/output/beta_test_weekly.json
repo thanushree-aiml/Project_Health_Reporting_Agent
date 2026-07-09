@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-09T16:35:36.250660Z",
+  "generated_at": "2026-07-09T14:27:48.709852Z",
   "input_path": "data/input/sample_project_beta.json",
   "signals": {
-    "project_name": "Beta",
+    "project_name": "Beta_Test",
     "schedule_slippage_days": 3.0,
     "budget_burn_percent": 8.0,
     "milestone_completion_percent": 92.0,

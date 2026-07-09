@@ -1,13 +1,41 @@
 {
-  "generated_at": "2026-07-08T18:11:35.435153Z",
+  "generated_at": "2026-07-09T16:53:11.965146Z",
   "projects": [
     "Alpha",
+    "Beta_Test",
     "Beta",
     "Gamma"
   ],
   "overall_counts": {
     "red": 2,
-    "green": 1
+    "green": 2
+  },
+  "category_trends": {
+    "schedule": {
+      "amber": 1,
+      "green": 2,
+      "red": 1
+    },
+    "budget": {
+      "red": 1,
+      "green": 2,
+      "amber": 1
+    },
+    "milestones": {
+      "amber": 1,
+      "green": 2,
+      "red": 1
+    },
+    "blockers": {
+      "amber": 1,
+      "green": 2,
+      "red": 1
+    },
+    "stakeholder_sentiment": {
+      "amber": 1,
+      "green": 2,
+      "red": 1
+    }
   },
   "top_risks": {
     "red_projects": [
